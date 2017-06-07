@@ -6,4 +6,4 @@
   let xBtn = XButton();
   xBtn.type = .Left //.Top .Left .Right .Bottom
 ```
-![示例图片]()
+![示例图片](https://github.com/xiaoGoO/XButton/blob/master/MySwift/IMG/XButton.gif)
