@@ -453,16 +453,23 @@ class XButton: UIButton {
         
     }
     
-    private var isSuperLines:Bool = false;
+    private var _isSuperLines:Bool = false;
     /**
      * 是否可以多行文字
      */
-    func isSuperLines(_ _isSuperLines:Bool){
-        self.isSuperLines = _isSuperLines;
-        //刷新UI
-        self.setNeedsLayout();
-        self.setNeedsDisplay();
-    }
+    var isSuperLines:Bool{
+        get{
+            return _isSuperLines;
+        }
+        set{
+            _isSuperLines = newValue;
+            //刷新UI
+            self.setNeedsLayout();
+            self.setNeedsDisplay();
+        }
+    };
+    
+
     
     
     private func getTitleRect(_ text:String?,_ font:UIFont,_ size:CGSize) -> CGRect{

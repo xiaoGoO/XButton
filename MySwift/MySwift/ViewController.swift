@@ -28,9 +28,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let xBtn = XButton();
-        xBtn.type = .Left
-        
+        xBtn.isSuperLines = true;
         xBtn.setOnClick { (btn:UIButton) in
             print("xxxxxxxx");
         };
