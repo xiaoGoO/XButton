@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var xBtn: XButton!
     
     @IBOutlet weak var imgTopTF: UITextField!
@@ -28,12 +28,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let xBtn = XButton();
+        xBtn.type = .Left
+        
         xBtn.setOnClick { (btn:UIButton) in
             print("xxxxxxxx");
         };
-       
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -67,10 +70,8 @@ class ViewController: UIViewController {
         default:
             xBtn.type = .Left
         }
-        xBtn.setNeedsLayout();
-        xBtn.setNeedsDisplay();
     }
-
+    
     @IBAction func onImageEdgeInsets(_ sender: Any) {
         var top:CGFloat = 0;
         if let doubleValue = Double(imgTopTF.text!){
@@ -90,10 +91,8 @@ class ViewController: UIViewController {
         }
         
         xBtn.imageEdgeInsets = UIEdgeInsets(top: top, left: left, bottom: bottom, right: right);
-        xBtn.setNeedsLayout();
-        xBtn.setNeedsDisplay();
     }
-
+    
     @IBAction func onTitleEdgeInsets(_ sender: Any) {
         var top:CGFloat = 0;
         if let doubleValue = Double(titleTop.text!){
@@ -111,9 +110,7 @@ class ViewController: UIViewController {
         if let doubleValue = Double(titleBottom.text!){
             bottom = CGFloat(doubleValue);
         }
-        xBtn.setNeedsLayout();
         xBtn.titleEdgeInsets = UIEdgeInsets(top: top, left: left, bottom: bottom, right: right);
-        xBtn.setNeedsDisplay();
     }
     
     @IBOutlet weak var onVer: UIButton!
