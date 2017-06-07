@@ -454,10 +454,13 @@ class XButton: UIButton {
     }
     
     private var isSuperLines:Bool = false;
-    
+    /**
+     * 是否可以多行文字
+     */
     func isSuperLines(_ _isSuperLines:Bool){
         self.isSuperLines = _isSuperLines;
         //刷新UI
+        self.setNeedsLayout();
         self.setNeedsDisplay();
     }
     
