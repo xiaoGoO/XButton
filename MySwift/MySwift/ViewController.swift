@@ -27,7 +27,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         xBtn.isSuperLines = true;
         xBtn.setOnClick { (btn:UIButton) in
             print("xxxxxxxx");
@@ -39,6 +38,13 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    //MARK: >>>>>>>>>  Action  <<<<<<<<<<<<
+    /// 点击改变图片方向
+    ///
+    /// - Parameters:
+    ///     - sender:  触发事件的按钮
+    /// - returns: void
     @IBAction func onImageArr(_ sender: UIButton) {
         switch sender.tag {
         case 1:
