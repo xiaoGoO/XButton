@@ -9,6 +9,8 @@
 import UIKit
 
 class XButton: UIButton {
+    
+    //MARK: >>>>>>>  数据
     enum XButtonType:Int {
         case Left = 0
         case Top
@@ -16,9 +18,8 @@ class XButton: UIButton {
         case Right
     }
     
-    
+    //MARK: >>>>>>> 属性
     var _type:XButtonType = .Left;
-    
     public var type:XButtonType{
         get{
             return _type
@@ -31,7 +32,7 @@ class XButton: UIButton {
         }
     }
     /**
-     * 重新 该方法，使之自动刷新UI
+     * 重写 该方法，使之自动刷新UI
      */
     override var contentVerticalAlignment: UIControlContentVerticalAlignment{
         get{
@@ -43,11 +44,60 @@ class XButton: UIButton {
             self.setNeedsDisplay();
         }
     }
+    private var _isSuperLines:Bool = false;
+    /**
+     * 是否可以多行文字
+     */
+    var isSuperLines:Bool{
+        get{
+            return _isSuperLines;
+        }
+        set{
+            _isSuperLines = newValue;
+            //刷新UI
+            self.setNeedsLayout();
+            self.setNeedsDisplay();
+        }
+    };
     
+    //MARK: >>>>>>>> 内部方法
     
     override func layoutSubviews() {
         super.layoutSubviews();
-        
+        //更新UI
+        setUpUI();
+    }
+    
+    
+    
+
+    //MARK: >>>>>>> 计算方法
+    /**
+     根据标题文字计算布局大小
+     
+        let size = getTitleRect("我到底有多长",UIFont.systemFont(ofSize: 15),CGSize(width:CGFloat.greatestFiniteMagnitude,30));
+     
+     - Parameters:
+          - text: 文字内容
+          - font: 文字大小
+          - size: 布局范围
+     - returns: CGRect
+     */
+    private func getTitleRect(_ text:String?,_ font:UIFont,_ size:CGSize) -> CGRect{
+        if text == nil {
+            return CGRect.zero;
+        }
+        let attributes = [NSFontAttributeName:font];
+        let nsString = NSString(string: text!)
+        return nsString.boundingRect(with: size, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: attributes, context: nil);
+    }
+    
+    //MARK: >>>>>>>  UI
+    
+    /**
+     刷新UI
+     */
+    private func setUpUI(){
         //获取图片大小以及比例 （用于计算位置）
         var imageWidth = imageView?.image == nil ? 0:imageView!.image!.size.width;
         var imageHeight = imageView?.image == nil ? 0:imageView!.image!.size.height;
@@ -437,48 +487,10 @@ class XButton: UIButton {
                     self.titleLabel?.frame.origin.y = 0 + self.titleEdgeInsets.top;
                     
                     
-                    
                 }
                 
-                
             }
-            
-            
-        default:
-            print("");
         }
-        
-        
-        
-        
-    }
-    
-    private var _isSuperLines:Bool = false;
-    /**
-     * 是否可以多行文字
-     */
-    var isSuperLines:Bool{
-        get{
-            return _isSuperLines;
-        }
-        set{
-            _isSuperLines = newValue;
-            //刷新UI
-            self.setNeedsLayout();
-            self.setNeedsDisplay();
-        }
-    };
-    
-
-    
-    
-    private func getTitleRect(_ text:String?,_ font:UIFont,_ size:CGSize) -> CGRect{
-        if text == nil {
-            return CGRect.zero;
-        }
-        let attributes = [NSFontAttributeName:font];
-        let nsString = NSString(string: text!)
-        return nsString.boundingRect(with: size, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: attributes, context: nil);
     }
     
 }

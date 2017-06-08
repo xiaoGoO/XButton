@@ -22,8 +22,12 @@ extension UIButton {
     public func setOnClick(_ onClickBlock:((UIButton) ->Void)?){
         if onClickBlock != nil{
             objc_setAssociatedObject(self, &UIButtonKey.onClickKey, onClickBlock!, .OBJC_ASSOCIATION_COPY_NONATOMIC);
-            self.addTarget(self, action: #selector(UIButton.onClick(_:)), for: UIControlEvents.touchUpInside);
+            self.addTarget(action: #selector(UIButton.onClick(_:)), for: UIControlEvents.touchUpInside);
         }
+    }
+    
+    private func addTarget(action: Selector, for controlEvents: UIControlEvents) {
+        super.addTarget(self, action: action, for: controlEvents);
     }
     
     /**
